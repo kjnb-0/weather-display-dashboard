@@ -1,0 +1,44 @@
+body {
+  margin: 0 auto;
+}
+
+.container {
+  background-color: gray;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: slateblue;
+  color: whitesmoke;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#weather-display {
+  margin: 5rem;
+  padding: 10%;
+  border: solid slateblue;
+  background-color: whitesmoke;
+}
+
+#display-title {
+  margin-top: 0.5rem;
+  padding: 2%;
+  color: tomato;
+  text-align: center;
+}
+
+#button {
+  border: 2px solid black;
+  margin: 1rem;
+}
+
+#weather-input {
+padding: .5%;
+margin: 1rem;
+border: 2px double slateblue;
+}
+
+/* p {
+} */
