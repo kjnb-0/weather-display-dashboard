@@ -1,14 +1,13 @@
 
 //https://openweathermap.org/api/one-call-api
 
-//var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
+// USES CITY NAME! https://openweathermap.org/current
+
+// var requestURl api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
 
 // Parameters
-// lat, lon	required	Geographical coordinates (latitude, longitude)
-// dt	required	Date from the previous five days (Unix time, UTC time zone), e.g. dt=1586468027
 // appid	required	Your unique API key (you can always find it on your account page under the "API key" tab)
-// units	optional	Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
-// lang	optional	You can use the lang parameter to get the output in your language.
 
 
 // Browser Fetch Method
@@ -21,3 +20,8 @@ fetch(requestUrl)
     console.log('Fetch Response \n-------------');
     console.log(data);
   });
+
+  // read userinput from textinput in html 
+  // fetch w/ userinput
+  // return data
+  //push that data into .cardtext p 
