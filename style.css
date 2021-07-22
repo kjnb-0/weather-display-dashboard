@@ -35,12 +35,42 @@ header {
 }
 
 #weather-input {
-padding: .5%;
-margin: 1rem;
-border: 2px double slateblue;
+  padding: 0.5%;
+  margin: 1rem;
+  border: 2px double slateblue;
 }
 
-ul {
-  color:whitesmoke;
+ul,
+li {
+  color: whitesmoke;
   list-style: none;
+}
+
+/* #uv-index {
+  font-size: 1.1rem;
+
+} */
+.minimal {
+  background-color: green;
+  color: black;
+}
+
+.low {
+  background-color: yellow;
+  color: black;
+}
+
+.moderate {
+  background-color: orange;
+  color: black;
+}
+
+.high {
+  background-color: red;
+  color: black;
+}
+
+.extreme {
+  background-color: fuchsia;
+  color: black;
 }
