@@ -1,18 +1,17 @@
 //https://openweathermap.org/api/one-call-api
 //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 //api key accfb71ce5131d183c44d819c83e21f6
-
-var weatherHeader = document.querySelector("#weather-header");
-var weatherList = document.querySelector("#weather-list");
-var futureWeatherList = document.querySelector("#future-weather");
-var UVI = document.querySelector("#uv-index");
-var fetchButton = document.querySelector("#button");
+const weatherHeader = document.querySelector("#weather-header");
+const weatherList = document.querySelector("#weather-list");
+const futureWeatherList = document.querySelector("#future-weather");
+const UVI = document.querySelector("#uv-index");
+const fetchButton = document.querySelector("#button");
 
 function getApi() {
   //user input
-  var city = $("#weather-input").val();
-  var apiKey = "accfb71ce5131d183c44d819c83e21f6";
-  var requestUrl =
+  const city = $("#weather-input").val();
+  const apiKey = "accfb71ce5131d183c44d819c83e21f6";
+  const requestUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&units=imperial&appid=" +
@@ -26,39 +25,40 @@ function getApi() {
       console.log(data);
 
       //name and date
-      var weatherItemDate = convertUnixTime(data.dt);
       var weatherItemName = document.createElement("h4");
-      weatherItemName.textContent = data.name + " on " + weatherItemDate;
-      weatherHeader.append(weatherItemName);
-
+      weatherItemName.textContent =
+        data.name + " on " + convertUnixTime(data.dt);
       //icon for weather conditions
       var icon = data.weather[0].icon;
       var iconimg = document.createElement("img");
       iconimg.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-      weatherList.append(iconimg);
-
       //description
       var weatherItemDescribe = document.createElement("li");
       weatherItemDescribe.textContent = "Conditions: " + data.weather[0].main;
-      weatherList.append(weatherItemDescribe);
       //current temp
       var weatherItemTemp = document.createElement("li");
       weatherItemTemp.textContent = "Current temp: " + data.main.temp + "℉";
-      weatherList.append(weatherItemTemp);
       //humidity
       var weatherItemHumid = document.createElement("li");
       weatherItemHumid.textContent = "Humidity: " + data.main.humidity + "%";
-      weatherList.append(weatherItemHumid);
       //wind
       var weatherItemWind = document.createElement("li");
       weatherItemWind.textContent = "Wind: " + data.wind.speed + "mph";
-      weatherList.append(weatherItemWind);
+      //append
+      weatherHeader.append(weatherItemName);
+      weatherList.append(
+        iconimg,
+        weatherItemDescribe,
+        weatherItemTemp,
+        weatherItemHumid,
+        weatherItemWind
+      );
 
       //use coordinates from this response to search for 5 day forecast, uv index
-      var citylon = data.coord.lon;
-      var citylat = data.coord.lat;
+      const citylon = data.coord.lon;
+      const citylat = data.coord.lat;
       console.log(citylon, citylat);
-      var coordRequestUrl =
+      const coordRequestUrl =
         "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         citylat +
         "&lon=" +
@@ -82,72 +82,33 @@ function getApi() {
       weatherItemUVI.textContent = "UV Index: " + uvidata;
       UVI.append(weatherItemUVI);
 
-      //card future 1
-      //date
-      var futureWeatherDate1 = document.createElement("li");
-      futureWeatherDate1.textContent = convertUnixTime(data.daily[1].dt);
-      document
-        .querySelector("#future-weather-list1")
-        .append(futureWeatherDate1);
-      //icon
-      var futureicon1 = data.daily[1].weather[0].icon;
-      var iconimg1 = document.createElement("img");
-      iconimg1.src =
-        "http://openweathermap.org/img/wn/" + futureicon1 + "@2x.png";
-      document.querySelector("#future-weather-list1").append(iconimg1);
-      //card future 2
-      //date
-      var futureWeatherDate2 = document.createElement("li");
-      futureWeatherDate2.textContent = convertUnixTime(data.daily[2].dt);
-      document
-        .querySelector("#future-weather-list2")
-        .append(futureWeatherDate2);
-      //icon
-      var futureicon2 = data.daily[2].weather[0].icon;
-      var iconimg2 = document.createElement("img");
-      iconimg2.src =
-        "http://openweathermap.org/img/wn/" + futureicon2 + "@2x.png";
-      document.querySelector("#future-weather-list2").append(iconimg2);
-      //card future 3
-      //date
-      var futureWeatherDate3 = document.createElement("li");
-      futureWeatherDate3.textContent = convertUnixTime(data.daily[3].dt);
-      document
-        .querySelector("#future-weather-list3")
-        .append(futureWeatherDate3);
-      //icon
-      var futureicon3 = data.daily[3].weather[0].icon;
-      var iconimg3 = document.createElement("img");
-      iconimg3.src =
-        "http://openweathermap.org/img/wn/" + futureicon3 + "@2x.png";
-      document.querySelector("#future-weather-list3").append(iconimg3);
-      //card future 4
-      //date
-      var futureWeatherDate4 = document.createElement("li");
-      futureWeatherDate4.textContent = convertUnixTime(data.daily[4].dt);
-      document
-        .querySelector("#future-weather-list4")
-        .append(futureWeatherDate4);
-      //icon
-      var futureicon4 = data.daily[4].weather[0].icon;
-      var iconimg4 = document.createElement("img");
-      iconimg4.src =
-        "http://openweathermap.org/img/wn/" + futureicon4 + "@2x.png";
-      document.querySelector("#future-weather-list4").append(iconimg4);
-      //card future 5
-      //date
-      var futureWeatherDate5 = document.createElement("li");
-      futureWeatherDate5.textContent = convertUnixTime(data.daily[5].dt);
-      document
-        .querySelector("#future-weather-list5")
-        .append(futureWeatherDate5);
-      //icon
-      var futureicon5 = data.daily[5].weather[0].icon;
-      var iconimg5 = document.createElement("img");
-      iconimg5.src =
-        "http://openweathermap.org/img/wn/" + futureicon5 + "@2x.png";
-      document.querySelector("#future-weather-list5").append(iconimg5);
+      //i loop for cards?
+      for (let i = 1; i <= 5; i++) {
+        //variables
+        const futureicon = data.daily[i].weather[0].icon;
+        const iconimg1 = document.createElement("img");
+        iconimg1.src =
+          "http://openweathermap.org/img/wn/" + futureicon + "@2x.png";
+        const newDiv = document.createElement("div");
+        const futureDates = convertUnixTime(data.daily[i].dt);
+        const futureConditions = "Conditions: " + data.daily[i].weather[0].main;
+        const futureTemp = "Temp: " + data.daily[i].temp.day;
+        const futureHumidity = "Humidity: " + data.daily[i].humidity + "%";
+        const futureWind = "Wind: " + data.daily[i].wind_speed + "mph"; 
+        const futureUVI = "UV Index: " + data.daily[i].uvi;
 
+        newDiv.append(futureDates,
+          iconimg1,
+          futureConditions,
+          futureTemp,
+          futureHumidity,
+          futureWind,
+          futureUVI);
+
+        // add the newly created element and its content into the DOM - from MDN docs
+        const currentDiv = document.getElementById("div1");
+        document.body.insertBefore(newDiv, currentDiv);
+      }
       //change uvi colors
       //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
       if (uvidata <= 2) {
@@ -162,8 +123,6 @@ function getApi() {
         weatherItemUVI.classList.add("extreme");
       }
     });
-
-  //option to view future weather conditions - take to separate html page or just display on side/bottom?
 }
 
 //to convert unix time to standard time

@@ -22,11 +22,7 @@ header {
   background-color: gray;
 }
 
-#future-weather1,
-#future-weather2,
-#future-weather3,
-#future-weather4,
-#future-weather5 {
+#future-weather-cards {
   margin: 0 auto;
   padding: 2%;
   border: 5px solid slateblue;
