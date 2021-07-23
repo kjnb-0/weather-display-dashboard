@@ -4,6 +4,7 @@
 
 var weatherHeader = document.querySelector("#weather-header");
 var weatherList = document.querySelector("#weather-list");
+var futureWeatherList = document.querySelector("#future-weather");
 var UVI = document.querySelector("#uv-index");
 var fetchButton = document.querySelector("#button");
 
@@ -53,7 +54,7 @@ function getApi() {
       weatherItemWind.textContent = "Wind: " + data.wind.speed + "mph";
       weatherList.append(weatherItemWind);
 
-      //use coordinates from this response to search for 5 day forecast, uv index?
+      //use coordinates from this response to search for 5 day forecast, uv index
       var citylon = data.coord.lon;
       var citylat = data.coord.lat;
       console.log(citylon, citylat);
@@ -72,15 +73,83 @@ function getApi() {
     })
     .then(function (data) {
       console.log(data);
+      document
+        .querySelector("#future-weather-cards")
+        .classList.remove("hidden");
+
       var weatherItemUVI = document.createElement("li");
       var uvidata = data.current.uvi;
       weatherItemUVI.textContent = "UV Index: " + uvidata;
       UVI.append(weatherItemUVI);
 
-      console.log(weatherItemUVI);
-      console.log(uvidata);
-//change uvi colors
-//https://www.epa.gov/sites/default/files/documents/uviguide.pdf
+      //card future 1
+      //date
+      var futureWeatherDate1 = document.createElement("li");
+      futureWeatherDate1.textContent = convertUnixTime(data.daily[1].dt);
+      document
+        .querySelector("#future-weather-list1")
+        .append(futureWeatherDate1);
+      //icon
+      var futureicon1 = data.daily[1].weather[0].icon;
+      var iconimg1 = document.createElement("img");
+      iconimg1.src =
+        "http://openweathermap.org/img/wn/" + futureicon1 + "@2x.png";
+      document.querySelector("#future-weather-list1").append(iconimg1);
+      //card future 2
+      //date
+      var futureWeatherDate2 = document.createElement("li");
+      futureWeatherDate2.textContent = convertUnixTime(data.daily[2].dt);
+      document
+        .querySelector("#future-weather-list2")
+        .append(futureWeatherDate2);
+      //icon
+      var futureicon2 = data.daily[2].weather[0].icon;
+      var iconimg2 = document.createElement("img");
+      iconimg2.src =
+        "http://openweathermap.org/img/wn/" + futureicon2 + "@2x.png";
+      document.querySelector("#future-weather-list2").append(iconimg2);
+      //card future 3
+      //date
+      var futureWeatherDate3 = document.createElement("li");
+      futureWeatherDate3.textContent = convertUnixTime(data.daily[3].dt);
+      document
+        .querySelector("#future-weather-list3")
+        .append(futureWeatherDate3);
+      //icon
+      var futureicon3 = data.daily[3].weather[0].icon;
+      var iconimg3 = document.createElement("img");
+      iconimg3.src =
+        "http://openweathermap.org/img/wn/" + futureicon3 + "@2x.png";
+      document.querySelector("#future-weather-list3").append(iconimg3);
+      //card future 4
+      //date
+      var futureWeatherDate4 = document.createElement("li");
+      futureWeatherDate4.textContent = convertUnixTime(data.daily[4].dt);
+      document
+        .querySelector("#future-weather-list4")
+        .append(futureWeatherDate4);
+      //icon
+      var futureicon4 = data.daily[4].weather[0].icon;
+      var iconimg4 = document.createElement("img");
+      iconimg4.src =
+        "http://openweathermap.org/img/wn/" + futureicon4 + "@2x.png";
+      document.querySelector("#future-weather-list4").append(iconimg4);
+      //card future 5
+      //date
+      var futureWeatherDate5 = document.createElement("li");
+      futureWeatherDate5.textContent = convertUnixTime(data.daily[5].dt);
+      document
+        .querySelector("#future-weather-list5")
+        .append(futureWeatherDate5);
+      //icon
+      var futureicon5 = data.daily[5].weather[0].icon;
+      var iconimg5 = document.createElement("img");
+      iconimg5.src =
+        "http://openweathermap.org/img/wn/" + futureicon5 + "@2x.png";
+      document.querySelector("#future-weather-list5").append(iconimg5);
+
+      //change uvi colors
+      //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
       if (uvidata <= 2) {
         weatherItemUVI.classList.add("minimal");
       } else if (uvidata <= 4) {

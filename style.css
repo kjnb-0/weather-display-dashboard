@@ -16,17 +16,26 @@ header {
 }
 
 #weather-display {
-  margin: 5rem;
-  padding: 10%;
+  margin: 0 auto;
+  padding: 2%;
+  border: 5px solid slateblue;
+  background-color: gray;
+}
+
+#future-weather1,
+#future-weather2,
+#future-weather3,
+#future-weather4,
+#future-weather5 {
+  margin: 0 auto;
+  padding: 2%;
   border: 5px solid slateblue;
   background-color: gray;
 }
 
 #display-title {
-  margin-top: 0.5rem;
   padding: 2%;
   color: whitesmoke;
-  text-align: center;
 }
 
 #button {
@@ -46,10 +55,9 @@ li {
   list-style: none;
 }
 
-/* #uv-index {
+#uv-index {
   font-size: 1.1rem;
-
-} */
+}
 .minimal {
   background-color: green;
   color: black;
@@ -73,4 +81,8 @@ li {
 .extreme {
   background-color: fuchsia;
   color: black;
+}
+
+.hidden {
+  display: none;
 }
