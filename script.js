@@ -25,24 +25,24 @@ function getApi() {
       console.log(data);
 
       //name and date
-      var weatherItemName = document.createElement("h4");
+      const weatherItemName = document.createElement("h4");
       weatherItemName.textContent =
         data.name + " on " + convertUnixTime(data.dt);
       //icon for weather conditions
-      var icon = data.weather[0].icon;
-      var iconimg = document.createElement("img");
+      const icon = data.weather[0].icon;
+      const iconimg = document.createElement("img");
       iconimg.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
       //description
-      var weatherItemDescribe = document.createElement("li");
+      const weatherItemDescribe = document.createElement("li");
       weatherItemDescribe.textContent = "Conditions: " + data.weather[0].main;
       //current temp
-      var weatherItemTemp = document.createElement("li");
+      const weatherItemTemp = document.createElement("li");
       weatherItemTemp.textContent = "Current temp: " + data.main.temp + "℉";
       //humidity
-      var weatherItemHumid = document.createElement("li");
+      const weatherItemHumid = document.createElement("li");
       weatherItemHumid.textContent = "Humidity: " + data.main.humidity + "%";
       //wind
-      var weatherItemWind = document.createElement("li");
+      const weatherItemWind = document.createElement("li");
       weatherItemWind.textContent = "Wind: " + data.wind.speed + "mph";
       //append
       weatherHeader.append(weatherItemName);
@@ -77,8 +77,8 @@ function getApi() {
         .querySelector("#future-weather-cards")
         .classList.remove("hidden");
 
-      var weatherItemUVI = document.createElement("li");
-      var uvidata = data.current.uvi;
+      const weatherItemUVI = document.createElement("li");
+      const uvidata = data.current.uvi;
       weatherItemUVI.textContent = "UV Index: " + uvidata;
       UVI.append(weatherItemUVI);
 
@@ -125,7 +125,7 @@ function getApi() {
     });
 }
 
-//to convert unix time to standard time
+//to convert unix time to standard time - https://www.codeinwp.com/snippets/convert-unix-time-to-date-with-javascript/
 function convertUnixTime(unix) {
   let a = new Date(unix * 1000),
     year = a.getFullYear(),
