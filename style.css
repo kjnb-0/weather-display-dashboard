@@ -18,15 +18,14 @@ header {
   margin: 0 auto;
   padding: 2%;
   border: 5px solid slateblue;
-  background-color: gray;
 }
 
-#future-weather-cards {
+/* #future-weather-cards {
   margin: 0 auto;
   padding: 2%;
   border: 5px solid slateblue;
   background-color: gray;
-}
+} */
 
 #button {
   border: 2px solid black;
@@ -43,17 +42,16 @@ header {
   padding: 2%;
   text-align: center;
   color: whitesmoke;
+  font-size: 1.5rem;
 }
 
 ul,
 li {
   color: whitesmoke;
   list-style: none;
+  text-align: center;
 }
 
-#uv-index {
-  font-size: 1.1rem;
-}
 .minimal {
   background-color: green;
   color: black;

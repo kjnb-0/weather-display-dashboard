@@ -3,8 +3,6 @@
 const weatherHeader = document.querySelector("#weather-header");
 const weatherDisplay = document.querySelector("#weather-display");
 const weatherList = document.querySelector("#weather-list");
-const UVI = document.querySelector("#uv-index");
-
 const fetchButton = document.querySelector("#button");
 
 function getApi() {
@@ -26,40 +24,33 @@ function getApi() {
 
       weatherDisplay.classList.remove("hidden");
 
-      //name and date
-      const weatherItemName = document.createElement("h4");
-      weatherItemName.textContent =
-        data.name + " on " + convertUnixTime(data.dt);
-      //icon for weather conditions
+      const weatherItemName = data.name + " on " + convertUnixTime(data.dt);
       const icon = data.weather[0].icon;
       const iconimg = document.createElement("img");
       iconimg.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-      //description
-      const weatherItemDescribe = document.createElement("li");
-      weatherItemDescribe.textContent = "Conditions: " + data.weather[0].main;
-      //current temp
-      const weatherItemTemp = document.createElement("li");
-      weatherItemTemp.textContent = "Current temp: " + data.main.temp + "℉";
-      //humidity
-      const weatherItemHumid = document.createElement("li");
-      weatherItemHumid.textContent = "Humidity: " + data.main.humidity + "%";
-      //wind
-      const weatherItemWind = document.createElement("li");
-      weatherItemWind.textContent = "Wind: " + data.wind.speed + "mph";
+      const weatherItemDescribe = "Conditions: " + data.weather[0].main;
+      const weatherItemTemp = "Current temp: " + data.main.temp + "℉";
+      const weatherItemHumid = "Humidity: " + data.main.humidity + "%";
+      const weatherItemWind = "Wind: " + data.wind.speed + "mph";
+      
       //append
-      weatherHeader.append(weatherItemName);
-      weatherList.append(
-        iconimg,
-        weatherItemDescribe,
-        weatherItemTemp,
-        weatherItemHumid,
-        weatherItemWind
-      );
+      const newLi = document.createElement("li");
+      newLi.append(iconimg);
+      const newLi1 = document.createElement("li");
+      newLi1.append(weatherItemDescribe);
+      const newLi2 = document.createElement("li");
+      newLi2.append(weatherItemTemp);
+      const newLi3 = document.createElement("li");
+      newLi3.append(weatherItemHumid);
+      const newLi4 = document.createElement("li");
+      newLi4.append(weatherItemWind);
 
+      weatherHeader.append(weatherItemName);
+      weatherList.append(newLi,newLi1,newLi2,newLi3,newLi4)
+    
       //use coordinates from this response to search for 5 day forecast, uv index
       const citylon = data.coord.lon;
       const citylat = data.coord.lat;
-      console.log(citylon, citylat);
       const coordRequestUrl =
         "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         citylat +
@@ -75,12 +66,13 @@ function getApi() {
     })
     .then(function (data) {
       console.log(data);
-      document.querySelector("#future-weather").classList.remove("hidden");
+      document.querySelector("#future").classList.remove("hidden");
 
-      const weatherItemUVI = document.createElement("li");
+      const UVILI = document.createElement("li");
       const uvidata = data.current.uvi;
-      weatherItemUVI.textContent = "UV Index: " + uvidata;
-      weatherList.append(weatherItemUVI);
+      const weatherItemUVI = "UV Index: " + uvidata;
+      UVILI.append(weatherItemUVI);
+      weatherList.appendChild(UVILI);
 
       for (let i = 1; i <= 5; i++) {
         //variables
@@ -96,29 +88,54 @@ function getApi() {
         const uvidata1 = data.daily[i].uvi;
         const futureUVI = "UV Index: " + uvidata1;
 
-        const futureWeatherList = (futureDates + "\n" + futureConditions + futureTemp)
-        console.log(futureWeatherList)
+        const futureWeatherList = [futureDates,iconimg1,futureConditions,futureTemp,futureHumidity,futureWind]
+        console.log(futureWeatherList)        
+
+        const futureLi = document.createElement("li");
+        futureLi.append(futureWeatherList[0]);
+        const futureLi1 = document.createElement("li");
+        futureLi1.append(futureWeatherList[1]);
+        const futureLi2 = document.createElement("li");
+        futureLi2.append(futureWeatherList[2]);
+        const futureLi3 = document.createElement("li");
+        futureLi3.append(futureWeatherList[3]);
+        const futureLi4 = document.createElement("li");
+        futureLi4.append(futureWeatherList[4]);
+        const futureLi5 = document.createElement("li");
+        futureLi5.append(futureWeatherList[5]);
+        document.querySelector("#future-weather-list").append(futureLi, futureLi1, futureLi3, futureLi4, futureLi5)
+
+        const futureUVLI = document.createElement("li");
+        futureUVLI.append(futureUVI);
+        console.log(futureUVI)
+        document.querySelector("#future-weather-list").appendChild(futureUVLI)
 
 
-        // const futureWeather1 = document.querySelector("#future-weather-list1");
-        const newLi = document.createElement("li");
-        newLi.append(futureWeatherList);
-        document.querySelector("#card1").appendChild(newLi)
-        // document.querySelector("#card2").appendChild(newLi)
-
-      }
-      //change uvi colors
+        //change uvi colors
       //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
+        if (uvidata1 <= 2) {
+          futureUVLI.classList.add("minimal");
+        } else if (uvidata1 <= 4) {
+          futureUVLI.classList.add("low");
+        } else if (uvidata1 <= 6) {
+          futureUVLI.classList.add("moderate");
+        } else if (uvidata1 <= 9) {
+          futureUVLI.classList.add("high");
+        } else {
+          futureUVLI.classList.add("extreme");
+        }
+      }
+      
       if (uvidata <= 2) {
-        weatherItemUVI.classList.add("minimal");
+        UVILI.classList.add("minimal");
       } else if (uvidata <= 4) {
-        weatherItemUVI.classList.add("low");
+        UVILI.classList.add("low");
       } else if (uvidata <= 6) {
-        weatherItemUVI.classList.add("moderate");
+        UVILI.classList.add("moderate");
       } else if (uvidata <= 9) {
-        weatherItemUVI.classList.add("high");
+        UVILI.classList.add("high");
       } else {
-        weatherItemUVI.classList.add("extreme");
+        UVILI.classList.add("extreme");
       }
       
       
