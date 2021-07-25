@@ -12,36 +12,53 @@
 
 <body>
   <header>
-    <h1>Look Up the Weather! ⛅</h1>
+    <h3>Look up the weather! ⛅ Enter a city below:</h3>
+    <input type="text" id="weather-input"></input>
+    <button id="button" class="btn btn-light">See Weather</button>
   </header>
 
   <main>
     <div class="container-fluid">
       <div class="row">
-        <div id="weather-display" class="col-10 text-center">
-          <h2 id="display-title">Enter a city below:</h2>
-          <input type="text" id="weather-input"></input>
-          <br>
-          <button id="button" class="btn btn-light">See Weather</button>
-
-          <div id="weather-results">
-            <p class="text-light mt-5 mb-0" id="weather-header">
-            <p id="weather-list">
-            </p>
-            <p> <span id="uv-index" class="badge"></span>
-            </p>
-            </p>
-
-          </div>
+        <div id="weather-display" class="col-10 text-center hidden">
+          <p class="text-light" id="weather-header">
+          <ul id="weather-list"></ul>
+          </p>
         </div>
       </div>
 
       <div class="row">
-        <div class="col text-center justify-content-center hidden">
+        <div id="future-weather" class="col text-center justify-content-center">
+          <h3>five day forecast</h3>
           <div class="card-group" id="future-weather-cards">
+            <div id="card1" class="card">
+              <p>
+              <ul id="future-weather-list1"></ul>
+              </p>
+            </div>
+            <div id="card2" class="card">
+              <p>
+              <ul id="future-weather-list2"></ul>
+              </p>
+            </div>
+            <div id="card3" class="card">
+              <p>
+              <ul id="future-weather-list3"></ul>
+              </p>
+            </div>
+            <div id="card4" class="card">
+              <p>
+              <ul id="future-weather-list4"></ul>
+              </p>
+            </div>
+            <div id="card5" class="card">
+              <p>
+              <ul id="future-weather-list5"></ul>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
