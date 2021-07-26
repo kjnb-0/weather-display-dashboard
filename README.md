@@ -6,6 +6,8 @@ https://kjnb-0.github.io/weather-display-dashboard/
 
 Collects user input on a location, then shows the current weather for that location as well as the five-day forecast. 
 
+![Screen Shot 2021-07-26 at 2 16 39 PM](https://user-images.githubusercontent.com/80792196/127060616-4ebfeeaf-9695-48bf-a98a-b964f64d53ec.png)
+
 ```
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
