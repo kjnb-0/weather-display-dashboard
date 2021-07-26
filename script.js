@@ -5,6 +5,12 @@ const weatherDisplay = document.querySelector("#weather-display");
 const weatherList = document.querySelector("#weather-list");
 const weatherInput = document.querySelector("#weather-input")
 const fetchButton = document.querySelector("#button");
+const fivedayforecast = document.querySelector("#future-weather-list")
+//array for storing previous city searches
+//check local storage - getItem to see if there are previous cities in there. If they are, insert into previousCities[]
+//if not, load blank array 
+const previousCities = []
+const inputHistory = document.querySelector("#input-history");
 
 function getApi() {
   //user input
@@ -46,10 +52,13 @@ function getApi() {
       const newLi4 = document.createElement("li");
       newLi4.append(weatherItemWind);
 
+      weatherHeader.innerHTML = "";
       weatherHeader.append(weatherItemName);
+      weatherList.innerHTML = "";
       weatherList.append(newLi, newLi1, newLi2, newLi3, newLi4);
 
-      weatherInput.append(city);
+      //come back to this 
+      saveCityName(city);
 
       //use coordinates from this response to search for 5 day forecast, uv index
       const citylon = data.coord.lon;
@@ -77,6 +86,8 @@ function getApi() {
       UVILI.append(weatherItemUVI);
       weatherList.appendChild(UVILI);
 
+      //clearing out before loop runs
+      fivedayforecast.innerHTML="";
       for (let i = 1; i <= 5; i++) {
         //variables
         const futureicon = data.daily[i].weather[0].icon;
@@ -99,7 +110,6 @@ function getApi() {
           futureHumidity,
           futureWind,
         ];
-        console.log(futureWeatherList);
 
         const futureLi = document.createElement("li");
         futureLi.append(futureWeatherList[0]);
@@ -115,13 +125,11 @@ function getApi() {
         futureLi5.append(futureWeatherList[5]);
         const lb = document.createElement("br");
 
-        document
-          .querySelector("#future-weather-list")
-          .append(lb, lb, futureLi, futureLi1, futureLi3, futureLi4, futureLi5);
+       fivedayforecast.append(lb, lb, futureLi, futureLi1, futureLi3, futureLi4, futureLi5);
 
         const futureUVLI = document.createElement("li");
         futureUVLI.append(futureUVI);
-        document.querySelector("#future-weather-list").appendChild(futureUVLI);
+        fivedayforecast.appendChild(futureUVLI);
 
         //change uvi colors
         //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
@@ -175,5 +183,27 @@ function convertUnixTime(unix) {
     hour = a.getHours();
   return `${month} ${date}, ${year}`;
 }
+//save search history
+function saveCityName(cityName) {
+  //user inputs city name
+  previousCities.push(cityName)
+  //that value is stored in localstorage
+  localStorage.setItem("Previous City", JSON.stringify(previousCities));
+  //clears out previous info from div
+ displayPreviousCities();
+  //that value is displayed in html element input-history
+  //that value turns into a button to run the whole function again
+}
+
+function displayPreviousCities(){
+  inputHistory.innerHTML = ""
+  inputHistory.append(previousCities)
+  for (const cityName of previousCities){
+    console.log(cityName);
+    //create button, set button text to be city name, append button 
+  }
+}
+
+//make event listener for inputhistory, if click on button, run getApi function
 
 fetchButton.addEventListener("click", getApi);
