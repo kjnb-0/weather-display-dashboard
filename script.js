@@ -201,6 +201,9 @@ function displayPreviousCities(){
   for (const cityName of previousCities){
     console.log(cityName);
     //create button, set button text to be city name, append button 
+    citybutton = document.createElement("button")
+    
+    
   }
 }
 
