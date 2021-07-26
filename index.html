@@ -12,25 +12,27 @@
 
 <body>
   <header class="bg-info text-center">
-    <h3>Look up the weather! ⛅ Enter a city below:</h3>
-    <input type="text" id="weather-input"></input>
+    <h3>Look up the weather! ⛅ </h3>
+    <input type="text" id="weather-input" placeholder="Enter a city:"></input>
     <button id="button" class="btn btn-light">See Weather</button>
   </header>
 
   <main>
     <div class="container-fluid">
-      <div class="row"> 
+      <div class="row">
         <div id="weather-display" class="col-6 col-md-6 hidden">
-          <div class="card"> 
-          <h3 id="weather-header" class="text-center"></h3>
-          <p>
-          <ul id="weather-list" class="list-group"></ul>
-          </p>
-          
+          <div class="card">
+            <h3 id="weather-header" class="text-center"></h3>
+            <p>
+            <ul id="weather-list" class="list-group"></ul>
+            </p>
+          </div>
+          <div class="card">
+            <p>
+            <ul id="input-history"></ul>
+            </p>
+          </div>
         </div>
-        <div class="card"><p>          <ul>search results go here</ul>
-        </p></div>
-      </div>
 
         <div id="future" class="col-6 col-md-6 hidden">
           <!-- <div class="card-group" id="future-weather-cards"> -->

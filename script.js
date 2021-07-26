@@ -3,11 +3,12 @@
 const weatherHeader = document.querySelector("#weather-header");
 const weatherDisplay = document.querySelector("#weather-display");
 const weatherList = document.querySelector("#weather-list");
+const weatherInput = document.querySelector("#weather-input")
 const fetchButton = document.querySelector("#button");
 
 function getApi() {
   //user input
-  const city = document.querySelector("#weather-input").value;
+  const city = weatherInput.value;
   const apiKey = "accfb71ce5131d183c44d819c83e21f6";
   const requestUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -47,6 +48,8 @@ function getApi() {
 
       weatherHeader.append(weatherItemName);
       weatherList.append(newLi, newLi1, newLi2, newLi3, newLi4);
+
+      weatherInput.append(city);
 
       //use coordinates from this response to search for 5 day forecast, uv index
       const citylon = data.coord.lon;
