@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <header class="text-center">
+  <header class="bg-info text-center">
     <h3>Look up the weather! ⛅ Enter a city below:</h3>
     <input type="text" id="weather-input"></input>
     <button id="button" class="btn btn-light">See Weather</button>
@@ -19,43 +19,47 @@
 
   <main>
     <div class="container-fluid">
-      <div class="row">
-        <div id="weather-display" class="col-10 text-center hidden bg-secondary">
-          <h4 id="weather-header"></h4>
-          <ul id="weather-list"></ul>
+      <div class="row"> 
+        <div id="weather-display" class="col-6 col-md-6 hidden">
+          <div class="card"> 
+          <h3 id="weather-header" class="text-center"></h3>
+          <p>
+          <ul id="weather-list" class="list-group"></ul>
           </p>
+          
         </div>
+        <div class="card"><p>          <ul>search results go here</ul>
+        </p></div>
       </div>
 
-      <div class="row">
-        <div id="future" class="col-10 text-center text-dark hidden">
-          <h3>five day forecast</h3>
+        <div id="future" class="col-6 col-md-6 hidden">
           <!-- <div class="card-group" id="future-weather-cards"> -->
-          <div id="future-weather" class="card bg-primary">
+          <div id="future-weather" class="card">
+            <h3 class="text-center">Five day forecast:</h3>
             <p>
-            <ul id="future-weather-list"></ul>
+            <ul id="future-weather-list" class="list-group"></ul>
             </p>
           </div>
           <!-- <div id="card2" class="card bg-primary">
-              <p>
-              <ul id="future-weather-list2"></ul>
-              </p>
-            </div>
-            <div id="card3" class="card bg-primary">
-              <p>
-              <ul id="future-weather-list3"></ul>
-              </p>
-            </div>
-            <div id="card4" class="card bg-primary">
-              <p>
-              <ul id="future-weather-list4"></ul>
-              </p>
-            </div>
-            <div id="card5" class="card bg-primary">
-              <p>
-              <ul id="future-weather-list5"></ul>
-              </p>
-            </div> -->
+            <p>
+            <ul id="future-weather-list2"></ul>
+            </p>
+          </div>
+          <div id="card3" class="card bg-primary">
+            <p>
+            <ul id="future-weather-list3"></ul>
+            </p>
+          </div>
+          <div id="card4" class="card bg-primary">
+            <p>
+            <ul id="future-weather-list4"></ul>
+            </p>
+          </div>
+          <div id="card5" class="card bg-primary">
+            <p>
+            <ul id="future-weather-list5"></ul>
+            </p>
+          </div> -->
         </div>
       </div>
     </div>

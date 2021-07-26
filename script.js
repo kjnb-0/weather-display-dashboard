@@ -32,7 +32,7 @@ function getApi() {
       const weatherItemTemp = "Current temp: " + data.main.temp + "℉";
       const weatherItemHumid = "Humidity: " + data.main.humidity + "%";
       const weatherItemWind = "Wind: " + data.wind.speed + "mph";
-      
+
       //append
       const newLi = document.createElement("li");
       newLi.append(iconimg);
@@ -46,8 +46,8 @@ function getApi() {
       newLi4.append(weatherItemWind);
 
       weatherHeader.append(weatherItemName);
-      weatherList.append(newLi,newLi1,newLi2,newLi3,newLi4)
-    
+      weatherList.append(newLi, newLi1, newLi2, newLi3, newLi4);
+
       //use coordinates from this response to search for 5 day forecast, uv index
       const citylon = data.coord.lon;
       const citylat = data.coord.lat;
@@ -88,8 +88,15 @@ function getApi() {
         const uvidata1 = data.daily[i].uvi;
         const futureUVI = "UV Index: " + uvidata1;
 
-        const futureWeatherList = [futureDates,iconimg1,futureConditions,futureTemp,futureHumidity,futureWind]
-        console.log(futureWeatherList)        
+        const futureWeatherList = [
+          futureDates,
+          iconimg1,
+          futureConditions,
+          futureTemp,
+          futureHumidity,
+          futureWind,
+        ];
+        console.log(futureWeatherList);
 
         const futureLi = document.createElement("li");
         futureLi.append(futureWeatherList[0]);
@@ -103,16 +110,18 @@ function getApi() {
         futureLi4.append(futureWeatherList[4]);
         const futureLi5 = document.createElement("li");
         futureLi5.append(futureWeatherList[5]);
-        document.querySelector("#future-weather-list").append(futureLi, futureLi1, futureLi3, futureLi4, futureLi5)
+        const lb = document.createElement("br");
+
+        document
+          .querySelector("#future-weather-list")
+          .append(lb, lb, futureLi, futureLi1, futureLi3, futureLi4, futureLi5);
 
         const futureUVLI = document.createElement("li");
         futureUVLI.append(futureUVI);
-        console.log(futureUVI)
-        document.querySelector("#future-weather-list").appendChild(futureUVLI)
-
+        document.querySelector("#future-weather-list").appendChild(futureUVLI);
 
         //change uvi colors
-      //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
+        //https://www.epa.gov/sites/default/files/documents/uviguide.pdf
         if (uvidata1 <= 2) {
           futureUVLI.classList.add("minimal");
         } else if (uvidata1 <= 4) {
@@ -125,7 +134,7 @@ function getApi() {
           futureUVLI.classList.add("extreme");
         }
       }
-      
+
       if (uvidata <= 2) {
         UVILI.classList.add("minimal");
       } else if (uvidata <= 4) {
@@ -137,8 +146,6 @@ function getApi() {
       } else {
         UVILI.classList.add("extreme");
       }
-      
-      
     });
 }
 

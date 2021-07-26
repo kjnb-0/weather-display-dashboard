@@ -2,52 +2,27 @@ body {
   margin: 0 auto;
 }
 
-/* .container {
-  background-color: gray;
-} */
-
 header {
   display: block;
-  background-color: slateblue;
-  color: whitesmoke;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-#weather-display {
+#weather-display,
+#future {
   margin: 0 auto;
   padding: 2%;
-  border: 5px solid slateblue;
+  border: 2px solid darkslategray;
 }
 
-/* #future-weather-cards {
-  margin: 0 auto;
-  padding: 2%;
-  border: 5px solid slateblue;
-  background-color: gray;
-} */
-
-#button {
+#button,
+#weather-input {
   border: 2px solid black;
   margin: 1rem;
-}
-
-#weather-input {
   padding: 0.5%;
-  margin: 1rem;
-  border: 2px double slateblue;
 }
 
-#weather-header {
-  padding: 2%;
-  text-align: center;
-  color: whitesmoke;
-  font-size: 1.5rem;
-}
-
-ul,
-li {
-  color: whitesmoke;
+ul {
   list-style: none;
   text-align: center;
 }
