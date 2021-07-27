@@ -1,16 +1,19 @@
 //api key accfb71ce5131d183c44d819c83e21f6
-//current forecast variables
+//html dom variables
 const weatherHeader = document.querySelector("#weather-header");
 const weatherDisplay = document.querySelector("#weather-display");
 const weatherList = document.querySelector("#weather-list");
 const weatherInput = document.querySelector("#weather-input")
 const fetchButton = document.querySelector("#button");
 const fivedayforecast = document.querySelector("#future-weather-list")
+const inputHistory = document.querySelector("#input-history");
+
 //array for storing previous city searches
 //check local storage - getItem to see if there are previous cities in there. If they are, insert into previousCities[]
-//if not, load blank array 
 const previousCities = []
-const inputHistory = document.querySelector("#input-history");
+localStorage.setItem("Previous City", JSON.stringify(previousCities));
+console.log(previousCities)
+// previousCities.push(previousCities)
 
 function getApi() {
   //user input
@@ -57,7 +60,6 @@ function getApi() {
       weatherList.innerHTML = "";
       weatherList.append(newLi, newLi1, newLi2, newLi3, newLi4);
 
-      //come back to this 
       saveCityName(city);
 
       //use coordinates from this response to search for 5 day forecast, uv index
@@ -185,28 +187,23 @@ function convertUnixTime(unix) {
 }
 //save search history
 function saveCityName(cityName) {
-  //user inputs city name
   previousCities.push(cityName)
-  //that value is stored in localstorage
   localStorage.setItem("Previous City", JSON.stringify(previousCities));
-  //clears out previous info from div
  displayPreviousCities();
-  //that value is displayed in html element input-history
-  //that value turns into a button to run the whole function again
 }
 
 function displayPreviousCities(){
   inputHistory.innerHTML = ""
-  inputHistory.append(previousCities)
   for (const cityName of previousCities){
     console.log(cityName);
     //create button, set button text to be city name, append button 
-    citybutton = document.createElement("button")
-    
-    
+    citybutton = document.createElement("button");
+    citybutton.innerHTML = cityName;
+    inputHistory.append(citybutton);
+    //running function with current value, not previous value 
+    citybutton.addEventListener("click",getApi)
   }
 }
 
-//make event listener for inputhistory, if click on button, run getApi function
-
 fetchButton.addEventListener("click", getApi);
+
